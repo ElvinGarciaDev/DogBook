@@ -12,6 +12,13 @@ const PORT = process.env.PORT || 8000
 require('dotenv').config()
 
 
+//Using EJS for views
+app.set("view engine", "ejs")
+
+//Static Folder. All files in the public are to be served. This way we don't have to service every file. Ex: static files that don't change. Photos, css, htmk
+app.use(express.static("public"));
+
+
 //middleware
 
 //Body Parsing so we can look at the stuff coming in from the forms
