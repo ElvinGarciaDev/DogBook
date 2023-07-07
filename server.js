@@ -3,6 +3,9 @@
 const express = require('express')
 const app = express()
 
+ // Handle interaction with out database.
+const mongoose = require('mongoose')
+
 
 // use port the port # in .env and if it's not avaliable use 8000
 const PORT = process.env.PORT || 8000
@@ -24,3 +27,9 @@ app.use(express.static("public"));
 //Body Parsing so we can look at the stuff coming in from the forms
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+
+// Setup server
+app.listen( PORT, () => {
+    console.log(`The server is running on port ${PORT} you better go catch it!`)
+} )
