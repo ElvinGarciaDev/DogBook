@@ -6,13 +6,18 @@ const app = express()
  // Handle interaction with out database.
 const mongoose = require('mongoose')
 
+const connectDB = require("./config/database"); // Holds our Database connect
+
+//Use .env file in config folder. This needs to be above connectDB() method in order for the method to get the DB string from .env
+require('dotenv').config()
+
+//Connect To Database
+connectDB();
+
 
 // use port the port # in .env and if it's not avaliable use 8000
 const PORT = process.env.PORT || 8000
 
-
-//Use .env file in config folder
-require('dotenv').config()
 
 
 //Using EJS for views
@@ -27,7 +32,6 @@ app.use(express.static("public"));
 //Body Parsing so we can look at the stuff coming in from the forms
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
 
 // Setup server
 app.listen( PORT, () => {
