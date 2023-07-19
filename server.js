@@ -37,3 +37,8 @@ app.use(express.urlencoded({ extended: true }))
 app.listen( PORT, () => {
     console.log(`The server is running on port ${PORT} you better go catch it!`)
 } )
+
+app.get('/', (req, res) => {
+    res.write('<h1>Hello, World!</h1>')
+    res.end()
+})
