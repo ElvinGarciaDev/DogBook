@@ -8,7 +8,7 @@ router.get("/", dogController.getAllDogs); // When the router hears this request
 router.get("/upload", dogController.uploadPage)
 
 // When the user submitts a dog to update
-//router.post("/upload", dogController.createDog)
+router.post("/upload", dogController.createDog)
 
 
 // //You can grab the query paramater with :id. :id is creating a paramter that will hold the query paramater. Route has to match the edit link in home.ejs

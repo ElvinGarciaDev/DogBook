@@ -29,6 +29,18 @@ module.exports = {
         } catch (error) {
             console.log(error)
         }
+    },
 
+    // When a user submitts the form  to upload a new dog. 
+
+    createDog: async (req, res) => {
+        try {
+            console.log(req.body)
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
+    
+
 }
