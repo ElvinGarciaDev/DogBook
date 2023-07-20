@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true }))
 
 
 //Setup Routes For Which The Server Is Listening
-app.use("/", mainRoutes)
+app.use("/", dogRoutes) // If any '/' route come in. Use the mainRoutes file
 
 // Setup server
 app.listen( PORT, () => {
