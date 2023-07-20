@@ -33,12 +33,11 @@ app.use(express.static("public"));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+
+//Setup Routes For Which The Server Is Listening
+app.use("/", mainRoutes)
+
 // Setup server
 app.listen( PORT, () => {
     console.log(`The server is running on port ${PORT} you better go catch it!`)
 } )
-
-app.get('/', (req, res) => {
-    res.write('<h1>Hello, World!</h1>')
-    res.end()
-})
