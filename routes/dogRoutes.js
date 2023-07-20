@@ -4,6 +4,8 @@ const router = express.Router()
 
 router.get("/", dogController.getAllDogs); // When the router hears this request go to this controller
 
+router.post("/upload", dogController)
+
 // // When someone click on the upload link. Show the upload page. Find the code in dogController
 // router.get("/upload", dogController.uploadPage)
 
