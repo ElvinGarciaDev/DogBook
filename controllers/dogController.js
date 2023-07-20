@@ -18,5 +18,17 @@ module.exports = {
             console.log(error)
         }
 
+    },
+
+    // When a get request is sent to /upload. Show the upload page
+    uploadPage: async (req, res) => {
+
+        try {
+            res.render("upload.ejs")
+            
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 }
