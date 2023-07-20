@@ -35,7 +35,7 @@
 
               <%# Using method-override to send a delete request %>
 
-              <form action="/delete/<%= dog._id %>"
+              <form action="/delete/<%= dog._id %>?_method=DELETE"
                 method="POST">
                 <button class="btn btn-primary btnDelete" type="submit"><i class="bi bi-trash"></i></button>
 

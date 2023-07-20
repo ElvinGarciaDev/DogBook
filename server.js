@@ -8,6 +8,9 @@ const mongoose = require('mongoose')
 
 const connectDB = require("./config/database"); // Holds our Database connect
 
+// Routes
+const dogRoutes = require("./routes/dogRoutes")
+
 //Use .env file in config folder. This needs to be above connectDB() method in order for the method to get the DB string from .env
 require('dotenv').config()
 
@@ -41,3 +44,6 @@ app.use("/", dogRoutes) // If any '/' route come in. Use the mainRoutes file
 app.listen( PORT, () => {
     console.log(`The server is running on port ${PORT} you better go catch it!`)
 } )
+
+//Use forms for put / delete
+// app.use(methodOverride("_method"));
