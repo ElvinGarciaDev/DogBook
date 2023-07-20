@@ -7,9 +7,16 @@ module.exports = {
 
     // get all the dogs in the database
     getAllDogs: async (req, res) => {
-        const dogPosts = await dogModel.find()
 
-        // Send the obj we got from the database to ejs to render
-        res.render("home.ejs", {dogs: dogPosts})
+        try {
+            const dogPosts = await dogModel.find()
+
+            // Send the obj we got from the database to ejs to render
+            res.render("home.ejs", {dogs: dogPosts})
+            
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 }
