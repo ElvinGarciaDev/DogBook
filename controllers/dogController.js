@@ -55,4 +55,28 @@ module.exports = {
       console.log(error);
     }
   },
+
+  // When a user click to edit a post from the home page. Find that post in the database and serve it
+  editPage: async (req, res) => {
+    try {
+
+        // Find the post that the user is looking for by grabbing the ID from the url
+        const post = await dogModel.findById(req.params.id) // .params.id getting the query paramater from the url
+
+        res.render("edit.ejs", {dog: post}) //Once a post that machtes this id is found. Send it to the edit.ejs. Also send the comment array
+        
+    } catch (error) {
+        console.log(error)
+        
+    }
+  },
+
+  // When the user is at the edit post, and they update any fields on that post
+editPost: async (req, res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
 };

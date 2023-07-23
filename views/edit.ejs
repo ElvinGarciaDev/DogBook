@@ -21,11 +21,11 @@
                 <form action="/edit/<%= dog._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                     <div>
                         <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" value="<%= dog.name %>" required>
                     </div>
                     <div>
                         <label for="Age">Age</label>
-                        <input type="number" id="age" name="age" value="<%= dog.name %>" required>
+                        <input type="number" id="age" name="age" value="<%= dog.age %>" required>
                     </div>
                     <div>
                         <label for="favoriteFood"> Faviorite Food</label>
@@ -35,8 +35,6 @@
                         <label for="funFact">Fun fact</label>
                         <input type="text" id="funFact" name="funFact"  value="<%= dog.funFact %>" required>
                     </div>
-                    <label for="upload">Upload image</label>
-                    <input type="file" id="upload" name="upload" required>
                 </div>
                 <button type="submit">Submitt</button>
                 </form>

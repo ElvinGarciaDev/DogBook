@@ -14,7 +14,10 @@ router.post("/upload", upload.single("upload"), dogController.createDog)
 
 //You can grab the query paramater with :id. :id is creating a paramter that will hold the query paramater. Route has to match the edit link in home.ejs
 // This will bring you to the edit page. There is another request the edits the post
-router.get("/edit/:id", dogController.updateDog)
+router.get("/edit/:id", dogController.editPage)
+
+// When the user is at the edit post, and they update any fields on that post
+router.put("/edit/:id", dogController.editPost)
 
 // router.delete("/delete/:id", dogController. deleteDog) // same as edit
 
