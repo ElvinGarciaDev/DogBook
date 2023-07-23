@@ -17,23 +17,23 @@
       <div>
         <div>
             <div>
-                <h2>Upload a Dog</h2>
-                <form action="/upload" method="POST" enctype="multipart/form-data">
+                <h2>Edit a Dog</h2>
+                <form action="/edit/<%= dog._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                     <div>
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div>
                         <label for="Age">Age</label>
-                        <input type="number" id="age" name="age" required>
+                        <input type="number" id="age" name="age" value="<%= dog.name %>" required>
                     </div>
                     <div>
                         <label for="favoriteFood"> Faviorite Food</label>
-                        <input type="text" id="favoriteFood" name="favoriteFood" required>
+                        <input type="text" id="favoriteFood" name="favoriteFood" value="<%= dog.favoriteFood %>" required>
                     </div>
                     <div>
                         <label for="funFact">Fun fact</label>
-                        <input type="text" id="funFact" name="funFact" required>
+                        <input type="text" id="funFact" name="funFact"  value="<%= dog.funFact %>" required>
                     </div>
                     <label for="upload">Upload image</label>
                     <input type="file" id="upload" name="upload" required>
