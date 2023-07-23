@@ -75,8 +75,10 @@ module.exports = {
 editPost: async (req, res) => {
     try {
         
+        await dogModel.findByIdAndUpdate(req.params.id, req.body)
+        res.redirect("/")
     } catch (error) {
-        
+        console.log(error)
     }
 }
 };
