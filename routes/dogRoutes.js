@@ -1,6 +1,7 @@
 const express = require('express')
 const dogController = require("../controllers/dogController") // import the dogController
 const router = express.Router()
+const upload = require("../middleware/multer") // bring in multer
 
 router.get("/", dogController.getAllDogs); // When the router hears this request go to this controller
 
@@ -8,7 +9,7 @@ router.get("/", dogController.getAllDogs); // When the router hears this request
 router.get("/upload", dogController.uploadPage)
 
 // When the user submitts a dog to update
-router.post("/upload", dogController.createDog)
+router.post("/upload", upload.single("file"), dogController.createDog)
 
 
 // //You can grab the query paramater with :id. :id is creating a paramter that will hold the query paramater. Route has to match the edit link in home.ejs
