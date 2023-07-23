@@ -19,6 +19,6 @@ router.get("/edit/:id", dogController.editPage)
 // When the user is at the edit post, and they update any fields on that post
 router.put("/edit/:id", dogController.editPost)
 
-// router.delete("/delete/:id", dogController. deleteDog) // same as edit
+router.delete("/delete/:id", dogController. deleteDog) // same as edit
 
 module.exports = router

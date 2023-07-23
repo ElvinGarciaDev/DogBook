@@ -18,6 +18,8 @@
         <div>
             <div>
                 <h2>Edit a Dog</h2>
+                <%# Using method-override to send a put request. html forms only allow to send post and get request. without method-override, we would've needed front end js to send the put and delete request %>
+
                 <form action="/edit/<%= dog._id %>?_method=PUT" method="POST">
                     <div>
                         <label for="name">Name</label>
