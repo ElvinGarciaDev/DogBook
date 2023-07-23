@@ -8,6 +8,9 @@ const mongoose = require('mongoose')
 
 const connectDB = require("./config/database"); // Holds our Database connect
 
+const methodOverride = require("method-override"); // So we don't have to use client side javascript when we use a form to send a delete or put. html forms orginally only send get and post request
+
+
 // Routes
 const dogRoutes = require("./routes/dogRoutes")
 
@@ -21,7 +24,8 @@ connectDB();
 // use port the port # in .env and if it's not avaliable use 8000
 const PORT = process.env.PORT || 8000
 
-
+//Use forms for put / delete
+app.use(methodOverride("_method"));
 
 //Using EJS for views
 app.set("view engine", "ejs")
@@ -45,5 +49,6 @@ app.listen( PORT, () => {
     console.log(`The server is running on port ${PORT} you better go catch it!`)
 } )
 
-//Use forms for put / delete
-// app.use(methodOverride("_method"));
+// app.put("/edit/:id", (req, res) => {
+//     console.log(req.body)
+// })
