@@ -48,7 +48,3 @@ app.use("/", dogRoutes) // If any '/' route come in. Use the mainRoutes file
 app.listen( PORT, () => {
     console.log(`The server is running on port ${PORT} you better go catch it!`)
 } )
-
-// app.put("/edit/:id", (req, res) => {
-//     console.log(req.body)
-// })
