@@ -3,6 +3,12 @@
 const express = require('express')
 const app = express()
 
+//passport for auht/login
+const passport = require("passport")
+const localStrategy = require("passport-local").Strategy
+
+const User = require("./models/userModel")
+
  // Handle interaction with out database.
 const mongoose = require('mongoose')
 
