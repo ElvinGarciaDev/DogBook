@@ -31,7 +31,13 @@ const dogSchema = new mongoose.Schema({
       createdAt: {
         type: Date,
         default: Date.now,
-      }
+      },
+
+      // keep track of who created the document/post
+      owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      },
 
 })
 

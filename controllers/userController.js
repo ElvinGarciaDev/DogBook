@@ -13,10 +13,10 @@ module.exports = {
     },
 
     
-    loginUser: passport.authorize("local", {
-        successRedirect: '/', // If login is successful send them to the homepage
-        failureRedirect: "/login" // if not able to login send them back to login page,
-        
+    loginUser: passport.authenticate("local", {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: false
     }),
 
     resisterUser: async (req, res) => {

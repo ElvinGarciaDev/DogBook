@@ -9,7 +9,7 @@ module.exports = {
   // get all the dogs in the database
   getAllDogs: async (req, res) => {
     try {
-      const dogPosts = await dogModel.find();
+      const dogPosts = await dogModel.find().populate('owner'); // gets all the dog data and also gets the information of the owner of each document
 
       // Send the obj we got from the database to ejs to render
       res.render("home.ejs", { dogs: dogPosts });
@@ -44,6 +44,9 @@ module.exports = {
         // Need this information to track image.
         image: result.secure_url,
         cloudinaryId: result.public_id,
+
+        // Tie the post to a user
+        owner: req.user._id // Whatever user is logged in, it will grab it and attach it to the post
       });
       res.redirect("/");
     } catch (error) {
@@ -66,9 +69,17 @@ module.exports = {
   // When the user is at the edit post, and they update any fields on that post
   editPost: async (req, res) => {
     try {
-      // Go in the database. find a post that matches the id passed in the url params and edit it
+
+      // In order for someone to edit a post we need to make sure they are the owner of the post. We could've just hidden the edit and delete buttons in the front end for post that 
+      // Were not made by the logged in user, but people could still type in the address manually and change them
+      // It's a good idea to match the id of the logged in person with the owner of the post. 
+      let dog = await dogModel.findById(req.params.id)
+      if(dog.owner.equals(req.user._id)) {
+              // Go in the database. find a post that matches the id passed in the url params and edit it
       await dogModel.findByIdAndUpdate(req.params.id, req.body);
       res.redirect("/");
+
+      }
     } catch (error) {
       console.log(error);
     }
@@ -77,7 +88,14 @@ module.exports = {
   // When a user wants to delete a post
   deleteDog: async (req, res) => {
     try {
-      // Find the post by id
+
+      // In order for someone to edit a post we need to make sure they are the owner of the post. We could've just hidden the edit and delete buttons in the front end for post that 
+      // Were not made by the logged in user, but people could still type in the address manually and change them
+      // It's a good idea to match the id of the logged in person with the owner of the post. 
+      let dog = await dogModel.findById(req.params.id)
+      if(dog.owner.equals(req.user._id)) {
+
+        // Find the post by id
       let post = await dogModel.findById({ _id: req.params.id });
 
       // Delete image from cloudinary.
@@ -88,6 +106,9 @@ module.exports = {
       // Delete post from db
       await dogModel.findByIdAndRemove({ _id: req.params.id })
       res.redirect("/")
+
+      }
+    
     } catch (error) {
         console.log(error)
     }

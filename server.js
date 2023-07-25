@@ -39,29 +39,28 @@ const User = require("./models/userModel")
 
 // Auth login middleware
 // Setup Sessions - stored in MongoDB. Does not log you out if you leave the page
-app.use(
-    session({
-      secret: "doogBook",
-      resave: false,
-      saveUninitialized: false,
-    })
-  );
+app.use(session({
+  secret: 'dogs are awesome', 
+  resave: false,
+  saveUninitialized: false
+}));
 
   // Turn passport on // Passport middleware
-  app.use(passport.initialize())
-  app.use(passport.initialize())
+  app.use(passport.initialize());
+  app.use(passport.session());
 
-  passport.use(new LocalStrategy(User.authenticate()))
+  passport.use(new LocalStrategy(User.authenticate()));
 
   // this is the tool that takes a user password and scrambles it when someone creates a password, then descrables it when the user is entering their password
-  passport.serializeUser(User.serializeUser())
-  passport.deserializeUser(User.deserializeUser())
+  passport.serializeUser(User.serializeUser());
+  passport.deserializeUser(User.deserializeUser());
 
   //middleware for login. Passing current ingo to all routes
- app.use((req, res, next) => {
-    res.locals.currentUser - req.user
-    next()
- })
+  app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+    });
+    
 
 //middleware
 //Body Parsing so we can look at the stuff coming in from the forms
