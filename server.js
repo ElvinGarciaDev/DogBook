@@ -18,9 +18,11 @@ app.use(methodOverride("_method"));
 //Using EJS for views
 app.set("view engine", "ejs")
 
+const session = require("express-session"); // Enable us to stay logged in
+
 //passport for auht/login
 const passport = require("passport")
-const localStrategy = require("passport-local").Strategy
+const LocalStrategy = require("passport-local").Strategy
 
 //Use .env file in config folder. This needs to be above connectDB() method in order for the method to get the DB string from .env
 require('dotenv').config()
@@ -41,10 +43,24 @@ app.use(
       secret: "doogBook",
       resave: false,
       saveUninitialized: false,
-      store: new MongoStore({ mongooseConnection: mongoose.connection }),
     })
   );
 
+  // Turn passport on // Passport middleware
+  app.use(passport.initialize())
+  app.use(passport.initialize())
+
+  passport.use(new LocalStrategy(User.authenticate()))
+
+  // this is the tool that takes a user password and scrambles it when someone creates a password, then descrables it when the user is entering their password
+  passport.serializeUser(User.serializeUser())
+  passport.deserializeUser(User.deserializeUser())
+
+  //middleware for login. Passing current ingo to all routes
+ app.use((req, res, next) => {
+    res.locals.currentUser - req.user
+    next()
+ })
 
 //middleware
 //Body Parsing so we can look at the stuff coming in from the forms
