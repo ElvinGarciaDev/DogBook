@@ -11,6 +11,7 @@ const methodOverride = require("method-override"); // So we don't have to use cl
 
 // Routes
 const dogRoutes = require("./routes/dogRoutes")
+const userRoutes = require("./routes/userRoutes")
 
 //Use forms for put / delete
 app.use(methodOverride("_method"));
@@ -70,6 +71,7 @@ app.use(express.urlencoded({ extended: true }))
 
 //Setup Routes For Which The Server Is Listening
 app.use("/", dogRoutes) // If any '/' route come in. Use the mainRoutes file
+app.use("/", userRoutes)
 
 // use port the port # in .env and if it's not avaliable use 8000
 const PORT = process.env.PORT || 8000

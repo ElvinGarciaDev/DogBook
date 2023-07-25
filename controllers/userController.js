@@ -4,11 +4,12 @@ const User = require("../models/userModel")
 module.exports = {
 
     loginPage: async (req, res) => {
-        res.render("login")
+        console.log("Hello")
+        res.render("login.ejs")
     },
 
     registerPage: async (req, res) => {
-        res.render("resister")
+        res.render("register.ejs")
     },
 
     
