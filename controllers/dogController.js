@@ -12,7 +12,7 @@ module.exports = {
       const dogPosts = await dogModel.find().populate('owner'); // gets all the dog data and also gets the information of the owner of each document
 
       // Send the obj we got from the database to ejs to render
-      res.render("home.ejs", { dogs: dogPosts });
+      res.render("home.ejs", { dogs: dogPosts, user: req.user });
     } catch (error) {
       console.log(error);
     }
@@ -21,7 +21,7 @@ module.exports = {
   // When a get request is sent to /upload. Show the upload page
   uploadPage: async (req, res) => {
     try {
-      res.render("upload.ejs");
+      res.render("upload.ejs", {user: req.user});
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +60,7 @@ module.exports = {
       // Find the post that the user is looking for by grabbing the ID from the url
       const post = await dogModel.findById(req.params.id); // .params.id getting the query paramater from the url
 
-      res.render("edit.ejs", { dog: post }); //Once a post that machtes this id is found. Send it to the edit.ejs. Also send the comment array
+      res.render("edit.ejs", { dog: post, user: req.user }); //Once a post that machtes this id is found. Send it to the edit.ejs. Also send the comment array
     } catch (error) {
       console.log(error);
     }

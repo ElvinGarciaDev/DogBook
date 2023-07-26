@@ -5,11 +5,11 @@ module.exports = {
 
     loginPage: async (req, res) => {
         console.log("Hello")
-        res.render("login.ejs")
+        res.render("login.ejs", {user: req.user})
     },
 
     registerPage: async (req, res) => {
-        res.render("register.ejs")
+        res.render("register.ejs", {user: req.user})
     },
 
     
