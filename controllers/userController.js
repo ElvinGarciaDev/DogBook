@@ -40,7 +40,7 @@ module.exports = {
     },
 
     logoutUser: (req, res) => {
-        res.logout(function(err) {
+        req.logout(function(err) {
             if(err) {return next(err)}
             res.redirect('/')
         })

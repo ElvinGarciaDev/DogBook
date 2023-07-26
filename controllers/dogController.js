@@ -9,7 +9,8 @@ module.exports = {
   // get all the dogs in the database
   getAllDogs: async (req, res) => {
     try {
-      const dogPosts = await dogModel.find().populate('owner'); // gets all the dog data and also gets the information of the owner of each document
+      const dogPosts = await dogModel.find().populate('owner');; // gets all the dog data and also gets the information of the owner of each document
+      console.log(dogPosts)
 
       // Send the obj we got from the database to ejs to render
       res.render("home.ejs", { dogs: dogPosts, user: req.user });
